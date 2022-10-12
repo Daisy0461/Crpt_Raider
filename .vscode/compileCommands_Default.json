@@ -1,0 +1,67 @@
+[
+	{
+		"file": "D:\\Udemy_Project\\Crypt_Raider\\Source\\Crypt_Raider\\Crypt_Raider.Build.cs",
+		"command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe\" @D:\\Udemy_Project\\Crypt_Raider\\.vscode\\compileCommands_Default\\Crypt_Raider.211.rsp",
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Udemy_Project\\Crypt_Raider\\Source\\Crypt_Raider\\Crypt_Raider.cpp",
+		"command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe\" @D:\\Udemy_Project\\Crypt_Raider\\.vscode\\compileCommands_Default\\Crypt_Raider.211.rsp",
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Udemy_Project\\Crypt_Raider\\Source\\Crypt_Raider\\Crypt_Raider.h",
+		"command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe\" @D:\\Udemy_Project\\Crypt_Raider\\.vscode\\compileCommands_Default\\Crypt_Raider.211.rsp",
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Udemy_Project\\Crypt_Raider\\Source\\Crypt_Raider\\Crypt_RaiderCharacter.cpp",
+		"command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe\" @D:\\Udemy_Project\\Crypt_Raider\\.vscode\\compileCommands_Default\\Crypt_Raider.211.rsp",
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Udemy_Project\\Crypt_Raider\\Source\\Crypt_Raider\\Crypt_RaiderCharacter.h",
+		"command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe\" @D:\\Udemy_Project\\Crypt_Raider\\.vscode\\compileCommands_Default\\Crypt_Raider.211.rsp",
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Udemy_Project\\Crypt_Raider\\Source\\Crypt_Raider\\Crypt_RaiderGameMode.cpp",
+		"command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe\" @D:\\Udemy_Project\\Crypt_Raider\\.vscode\\compileCommands_Default\\Crypt_Raider.211.rsp",
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Udemy_Project\\Crypt_Raider\\Source\\Crypt_Raider\\Crypt_RaiderGameMode.h",
+		"command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe\" @D:\\Udemy_Project\\Crypt_Raider\\.vscode\\compileCommands_Default\\Crypt_Raider.211.rsp",
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Udemy_Project\\Crypt_Raider\\Source\\Crypt_Raider\\Crypt_RaiderProjectile.cpp",
+		"command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe\" @D:\\Udemy_Project\\Crypt_Raider\\.vscode\\compileCommands_Default\\Crypt_Raider.211.rsp",
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Udemy_Project\\Crypt_Raider\\Source\\Crypt_Raider\\Crypt_RaiderProjectile.h",
+		"command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe\" @D:\\Udemy_Project\\Crypt_Raider\\.vscode\\compileCommands_Default\\Crypt_Raider.211.rsp",
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Udemy_Project\\Crypt_Raider\\Source\\Crypt_Raider\\TP_PickUpComponent.cpp",
+		"command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe\" @D:\\Udemy_Project\\Crypt_Raider\\.vscode\\compileCommands_Default\\Crypt_Raider.211.rsp",
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Udemy_Project\\Crypt_Raider\\Source\\Crypt_Raider\\TP_PickUpComponent.h",
+		"command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe\" @D:\\Udemy_Project\\Crypt_Raider\\.vscode\\compileCommands_Default\\Crypt_Raider.211.rsp",
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Udemy_Project\\Crypt_Raider\\Source\\Crypt_Raider\\TP_WeaponComponent.cpp",
+		"command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe\" @D:\\Udemy_Project\\Crypt_Raider\\.vscode\\compileCommands_Default\\Crypt_Raider.211.rsp",
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Udemy_Project\\Crypt_Raider\\Source\\Crypt_Raider\\TP_WeaponComponent.h",
+		"command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe\" @D:\\Udemy_Project\\Crypt_Raider\\.vscode\\compileCommands_Default\\Crypt_Raider.211.rsp",
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
+	}
+]
