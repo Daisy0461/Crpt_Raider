@@ -4,7 +4,7 @@
 		{
 			"name": "Launch Crypt_Raider (Debug)",
 			"request": "launch",
-			"program": "D:\\Udemy_Project\\Crypt_Raider\\Binaries\\Win64\\UnrealGame-Win64-Debug.exe",
+			"program": "D:\\Udemy_Project\\Crpt_Raider_\\Binaries\\Win64\\UnrealGame-Win64-Debug.exe",
 			"preLaunchTask": "Crypt_Raider Win64 Debug Build",
 			"args": [
 			],
@@ -20,7 +20,7 @@
 		{
 			"name": "Launch Crypt_Raider (DebugGame)",
 			"request": "launch",
-			"program": "D:\\Udemy_Project\\Crypt_Raider\\Binaries\\Win64\\UnrealGame-Win64-DebugGame.exe",
+			"program": "D:\\Udemy_Project\\Crpt_Raider_\\Binaries\\Win64\\UnrealGame-Win64-DebugGame.exe",
 			"preLaunchTask": "Crypt_Raider Win64 DebugGame Build",
 			"args": [
 			],
@@ -36,7 +36,7 @@
 		{
 			"name": "Launch Crypt_Raider (Development)",
 			"request": "launch",
-			"program": "D:\\Udemy_Project\\Crypt_Raider\\Binaries\\Win64\\UnrealGame.exe",
+			"program": "D:\\Udemy_Project\\Crpt_Raider_\\Binaries\\Win64\\UnrealGame.exe",
 			"preLaunchTask": "Crypt_Raider Win64 Development Build",
 			"args": [
 			],
@@ -52,7 +52,7 @@
 		{
 			"name": "Launch Crypt_Raider (Test)",
 			"request": "launch",
-			"program": "D:\\Udemy_Project\\Crypt_Raider\\Binaries\\Win64\\UnrealGame-Win64-Test.exe",
+			"program": "D:\\Udemy_Project\\Crpt_Raider_\\Binaries\\Win64\\UnrealGame-Win64-Test.exe",
 			"preLaunchTask": "Crypt_Raider Win64 Test Build",
 			"args": [
 			],
@@ -68,7 +68,7 @@
 		{
 			"name": "Launch Crypt_Raider (Shipping)",
 			"request": "launch",
-			"program": "D:\\Udemy_Project\\Crypt_Raider\\Binaries\\Win64\\UnrealGame-Win64-Shipping.exe",
+			"program": "D:\\Udemy_Project\\Crpt_Raider_\\Binaries\\Win64\\UnrealGame-Win64-Shipping.exe",
 			"preLaunchTask": "Crypt_Raider Win64 Shipping Build",
 			"args": [
 			],
@@ -87,7 +87,7 @@
 			"program": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Binaries\\Win64\\UnrealEditor-Win64-Debug.exe",
 			"preLaunchTask": "Crypt_RaiderEditor Win64 Debug Build",
 			"args": [
-				"D:\\Udemy_Project\\Crypt_Raider\\Crypt_Raider.uproject"
+				"D:\\Udemy_Project\\Crpt_Raider_\\Crypt_Raider.uproject"
 			],
 			"cwd": "C:\\Program Files\\Epic Games\\UE_5.0",
 			"stopAtEntry": false,
@@ -104,7 +104,7 @@
 			"program": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Binaries\\Win64\\UnrealEditor-Win64-DebugGame.exe",
 			"preLaunchTask": "Crypt_RaiderEditor Win64 DebugGame Build",
 			"args": [
-				"D:\\Udemy_Project\\Crypt_Raider\\Crypt_Raider.uproject"
+				"D:\\Udemy_Project\\Crpt_Raider_\\Crypt_Raider.uproject"
 			],
 			"cwd": "C:\\Program Files\\Epic Games\\UE_5.0",
 			"stopAtEntry": false,
@@ -121,7 +121,7 @@
 			"program": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
 			"preLaunchTask": "Crypt_RaiderEditor Win64 Development Build",
 			"args": [
-				"D:\\Udemy_Project\\Crypt_Raider\\Crypt_Raider.uproject"
+				"D:\\Udemy_Project\\Crpt_Raider_\\Crypt_Raider.uproject"
 			],
 			"cwd": "C:\\Program Files\\Epic Games\\UE_5.0",
 			"stopAtEntry": false,
@@ -140,7 +140,7 @@
 			"args": [
 				"-projectfiles",
 				"-vscode",
-				"-project=D:\\Udemy_Project\\Crypt_Raider\\Crypt_Raider.uproject",
+				"-project=D:\\Udemy_Project\\Crpt_Raider_\\Crypt_Raider.uproject",
 				"-game",
 				"-engine"
 			],
