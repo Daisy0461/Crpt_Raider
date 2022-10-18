@@ -43,6 +43,7 @@ void UMover::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponent
 	// AActor* Owner = GetOwner();							//Actor(문)이 있는 주소를 Owner에 넣는다.
 	// FString Name = (*Owner).GetActorNameOrLabel();		//(*Owner)를 통해 Actor에 접근을 해서 사용할 수 있는 함수를 사용한다. 현재 Actor의 이름을 넣는다.
 	// //위와 동일한 코드: FString Name = Owner->GetActorNameOrLabel();
+	
 	// FVector MyLocation = Owner->GetActorLocation();		//Owner가 가르키는 주소의 값(Actor)을 들고와서 GetActorLocation함수를 실행시킨다. 그러면 이 스크립트가 들어있는 Actor의 Location(FVector)값이 MyLocation으로 들어간다.
 	// FString MyLocationString = MyLocation.ToCompactString();
 
