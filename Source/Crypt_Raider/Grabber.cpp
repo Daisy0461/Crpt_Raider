@@ -36,5 +36,12 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	FVector Start = GetComponentLocation();
 	FVector End = Start + GetForwardVector() * MaxGrabberDist;
 	DrawDebugLine(GetWorld(), Start, End, FColor::Blue);
+
+	float Damage = 0; float plus = 5;
+	float& DamageRef = 	Damage;			//&의 의미는 float의 Reference라는 의미이다. float가 아니다. pointer memory를 할당한다. Damage의 Reference가 DamageRef에 들어간다. (Reference도 주소값이 들어간다.)
+	DamageRef = plus;
+	UE_LOG(LogTemp, Display, TEXT("DamageRef: %f   //  Damage: %f"), DamageRef, Damage);	//다음과 같이 ulog를 출력해도 주소값이 나오는것이 아니라 Damage에 할당되어있는 값이 출력된다.
+																							//Reference는 변수의 다름 이름을 붙여주는 것과 같다! 닉네임이라고 생각하면 될거같다.
+	
 }
 
