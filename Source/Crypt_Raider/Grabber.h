@@ -26,5 +26,7 @@ public:
 private:
 	UPROPERTY(EditAnywhere)
 	float MaxGrabberDist = 400;
-		
+	
+	void PrintDamage(const float& Damage);
+	bool HasDamage(float& OutDamage);
 };
