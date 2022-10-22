@@ -33,21 +33,6 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	// UWorld* World = GetWorld();				//World->의 의미는 GetWorld()로 얻어진 UWorld의 주소값에 접근해서 UWorld에서 사용할 수 있는 어떠한 함수를 사용하겠다는 의미이다.
 	// float Time = World->TimeSeconds;
 
-	FVector Start = GetComponentLocation();
-	FVector End = Start + GetForwardVector() * MaxGrabberDist;
-	DrawDebugLine(GetWorld(), Start, End, FColor::Blue);
-
-	FCollisionShape Sphere = FCollisionShape::MakeSphere(GrabRadius);
-	FHitResult HitResult;
-	bool HasHit = GetWorld()->SweepSingleByChannel(HitResult, Start, End, 
-	FQuat::Identity, ECC_GameTraceChannel2, Sphere
-	);		//5번째 파라미터인 ECollisionChannel 찾는 방법: 프로젝트 파일->Config->DefalutEngine.ini를 VSCode로 열기->Grabber서치 후 Channel=~~이다.
-
-	if(HasHit){
-		AActor* HitActor = HitResult.GetActor();
-		UE_LOG(LogTemp, Display, TEXT("name: %s"), *HitActor->GetActorNameOrLabel());
-	}
-
 	// float Damage;
 	// float& DamageRef = 	Damage;			//&의 의미는 float의 Reference라는 의미이다. float가 아니다. pointer memory를 할당한다. Damage의 Reference가 DamageRef에 들어간다. (Reference도 주소값이 들어간다.)
 	// if(HasDamage(Damage)){				//이 함수처럼 Damage변수가 방금 전에 선언되었고 초기화되지 않은 상태에서 바로 함수에 넘긴다면 그것은 Out 파라미터일 것이다. -> Out 파라미터는 값는 해당 파라미터의 값을 지정해준다는 것이다.
@@ -70,3 +55,27 @@ bool UGrabber::HasDamage(float& OutDamage){						//이와 같이 Reference가 �
 	return true;
 }
 
+void UGrabber::Release(){
+	UE_LOG(LogTemp, Display, TEXT("Release Grabber"));
+}
+
+void UGrabber::Grab(){
+	FVector Start = GetComponentLocation();
+	FVector End = Start + GetForwardVector() * MaxGrabberDist;
+	DrawDebugLine(GetWorld(), Start, End, FColor::Blue);
+
+	FCollisionShape Sphere = FCollisionShape::MakeSphere(GrabRadius);
+	FHitResult HitResult;
+	bool HasHit = GetWorld()->SweepSingleByChannel(HitResult, Start, End, 
+	FQuat::Identity, ECC_GameTraceChannel2, Sphere
+	);		//5번째 파라미터인 ECollisionChannel 찾는 방법: 프로젝트 파일->Config->DefalutEngine.ini를 VSCode로 열기->Grabber서치 후 Channel=~~이다.
+
+	if(HasHit){
+		AActor* HitActor = HitResult.GetActor();
+		UE_LOG(LogTemp, Display, TEXT("Is Hitted! : %s"), *HitActor->GetActorNameOrLabel());
+	}else{
+		UE_LOG(LogTemp, Display, TEXT("Nothiong hitted"));
+	}
+
+}
+ 
