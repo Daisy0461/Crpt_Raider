@@ -70,6 +70,7 @@ void UGrabber::Grab(){
 	FVector Start = GetComponentLocation();
 	FVector End = Start + GetForwardVector() * MaxGrabberDist;
 	DrawDebugLine(GetWorld(), Start, End, FColor::Blue);
+	//DrawDebugSphere(GetWorld(), End, 10, 10, FColor::Red, false, 5);
 
 	FCollisionShape Sphere = FCollisionShape::MakeSphere(GrabRadius);
 	FHitResult HitResult;
@@ -79,6 +80,8 @@ void UGrabber::Grab(){
 
 	if(HasHit){
 		AActor* HitActor = HitResult.GetActor();
+		DrawDebugSphere(GetWorld(), HitResult.ImpactPoint, 10, 10, FColor::Green, false, 5);		// 가고일을 잡으려면 이걸 사용해야한다. 맞은 포인트에 원이 생긴다.
+		DrawDebugSphere(GetWorld(), HitResult.Location, 10, 10, FColor::Purple, false, 5);			// 지금 이 Purple구의 중심이 우리가 Sphere모양으로 Sweep를 하고 있는데 이때 Sphere모양의 Sweep이 처음 닿은 위치의 구의 중심과 같다.
 		UE_LOG(LogTemp, Display, TEXT("Is Hitted! : %s"), *HitActor->GetActorNameOrLabel());
 	}else{
 		UE_LOG(LogTemp, Display, TEXT("Nothiong hitted"));
