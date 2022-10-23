@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "Components/SceneComponent.h"
 #include "Grabber.generated.h"
 
@@ -35,7 +36,11 @@ private:
 	
 	void PrintDamage(const float& Damage);
 	bool HasDamage(float& OutDamage);
+	UPhysicsHandleComponent* PullOutGetPhysicsHandle() const;
 
 	UPROPERTY(EditAnywhere)
 	float GrabRadius = 100;
+
+	UPROPERTY(EditAnywhere)
+	float HoldDistance = 200;
 };

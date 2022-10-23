@@ -4,7 +4,7 @@
 #include "Grabber.h"
 #include "Engine/World.h"
 #include "DrawDebugHelpers.h"
-#include "PhysicsEngine/PhysicsHandleComponent.h"
+
 
 // Sets default values for this component's properties
 UGrabber::UGrabber()
@@ -21,15 +21,6 @@ UGrabber::UGrabber()
 void UGrabber::BeginPlay()
 {
 	Super::BeginPlay();
-
-	UPhysicsHandleComponent* PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
-	if(PhysicsHandle != nullptr){
-		FString name = PhysicsHandle->GetName();
-		UE_LOG(LogTemp, Display, TEXT("%s"), *name);
-	}else{
-		UE_LOG(LogTemp, Display, TEXT("No Component"));
-	}
-	
 }
 
 
@@ -37,6 +28,16 @@ void UGrabber::BeginPlay()
 void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+
+	
+	UPhysicsHandleComponent* PhysicsHandle = PullOutGetPhysicsHandle();
+	if(PhysicsHandle == nullptr){
+		return;
+	}
+
+	FVector TargetLocation = GetComponentLocation() + GetForwardVector() * HoldDistance;
+	PhysicsHandle->SetTargetLocationAndRotation(TargetLocation, GetComponentRotation());
+
 	// UWorld* World = GetWorld();				//World->의 의미는 GetWorld()로 얻어진 UWorld의 주소값에 접근해서 UWorld에서 사용할 수 있는 어떠한 함수를 사용하겠다는 의미이다.
 	// float Time = World->TimeSeconds;
 
@@ -67,6 +68,12 @@ void UGrabber::Release(){
 }
 
 void UGrabber::Grab(){
+	
+	UPhysicsHandleComponent* PhysicsHandle = PullOutGetPhysicsHandle();
+	if(PhysicsHandle == nullptr){
+		return;
+	}
+
 	FVector Start = GetComponentLocation();
 	FVector End = Start + GetForwardVector() * MaxGrabberDist;
 	DrawDebugLine(GetWorld(), Start, End, FColor::Blue);
@@ -79,13 +86,23 @@ void UGrabber::Grab(){
 	);		//5번째 파라미터인 ECollisionChannel 찾는 방법: 프로젝트 파일->Config->DefalutEngine.ini를 VSCode로 열기->Grabber서치 후 Channel=~~이다.
 
 	if(HasHit){
-		AActor* HitActor = HitResult.GetActor();
-		DrawDebugSphere(GetWorld(), HitResult.ImpactPoint, 10, 10, FColor::Green, false, 5);		// 가고일을 잡으려면 이걸 사용해야한다. 맞은 포인트에 원이 생긴다.
-		DrawDebugSphere(GetWorld(), HitResult.Location, 10, 10, FColor::Purple, false, 5);			// 지금 이 Purple구의 중심이 우리가 Sphere모양으로 Sweep를 하고 있는데 이때 Sphere모양의 Sweep이 처음 닿은 위치의 구의 중심과 같다.
-		UE_LOG(LogTemp, Display, TEXT("Is Hitted! : %s"), *HitActor->GetActorNameOrLabel());
-	}else{
-		UE_LOG(LogTemp, Display, TEXT("Nothiong hitted"));
+		PhysicsHandle->GrabComponentAtLocationWithRotation(
+			HitResult.GetComponent(), 
+			NAME_None, 
+			HitResult.ImpactPoint, 
+			//HitResult.GetComponent()->GetComponentRotation()
+			GetComponentRotation()
+			);
 	}
+
+}
+
+UPhysicsHandleComponent* UGrabber::PullOutGetPhysicsHandle() const{
+	UPhysicsHandleComponent* PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
+	if(PhysicsHandle == nullptr){
+		UE_LOG(LogTemp, Warning, TEXT("Grabber reauires a UPhysicsHandleComponent."));
+	}
+	return PhysicsHandle;
 
 }
  
