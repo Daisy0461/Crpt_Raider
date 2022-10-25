@@ -35,8 +35,10 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 		return;
 	}
 
-	FVector TargetLocation = GetComponentLocation() + GetForwardVector() * HoldDistance;
-	PhysicsHandle->SetTargetLocationAndRotation(TargetLocation, GetComponentRotation());
+	if(PhysicsHandle->GetGrabbedComponent() != nullptr){			//무언가를 쥐고 있다면 아래를 실행 
+		FVector TargetLocation = GetComponentLocation() + GetForwardVector() * HoldDistance;
+		PhysicsHandle->SetTargetLocationAndRotation(TargetLocation, GetComponentRotation());
+	}
 
 	// UWorld* World = GetWorld();				//World->의 의미는 GetWorld()로 얻어진 UWorld의 주소값에 접근해서 UWorld에서 사용할 수 있는 어떠한 함수를 사용하겠다는 의미이다.
 	// float Time = World->TimeSeconds;
@@ -64,7 +66,16 @@ bool UGrabber::HasDamage(float& OutDamage){						//이와 같이 Reference가 �
 }
 
 void UGrabber::Release(){
-	
+	UPhysicsHandleComponent* PhysicsHandle = PullOutGetPhysicsHandle();
+	if(PhysicsHandle == nullptr){
+		return;
+	}
+
+	if(PhysicsHandle->GetGrabbedComponent() != nullptr){		//무언가를 쥐고 있다면
+		PhysicsHandle->GetGrabbedComponent()->WakeAllRigidBodies();			//이것을 실행시키는 이유가 Grab을 실행시키고 움직이지 않으면 Physic 최적화를 위해 Rigid가 꺼질 수 있으므로 놓을 때 다시 켜줘야한다. 다시 켜지 않으면 물리가 적용되지 않아서 놓을 수 없을 수도 있다.
+		PhysicsHandle->ReleaseComponent();
+	}
+
 }
 
 void UGrabber::Grab(){
@@ -86,6 +97,7 @@ void UGrabber::Grab(){
 	);		//5번째 파라미터인 ECollisionChannel 찾는 방법: 프로젝트 파일->Config->DefalutEngine.ini를 VSCode로 열기->Grabber서치 후 Channel=~~이다.
 
 	if(HasHit){
+		isGrabbed = true;
 		UPrimitiveComponent* HitComponent = HitResult.GetComponent();
 		HitComponent->WakeAllRigidBodies();
 		PhysicsHandle->GrabComponentAtLocationWithRotation(
@@ -105,6 +117,5 @@ UPhysicsHandleComponent* UGrabber::PullOutGetPhysicsHandle() const{
 		UE_LOG(LogTemp, Warning, TEXT("Grabber reauires a UPhysicsHandleComponent."));
 	}
 	return PhysicsHandle;
-
 }
  

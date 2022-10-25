@@ -36,6 +36,7 @@ private:
 	
 	void PrintDamage(const float& Damage);
 	bool HasDamage(float& OutDamage);
+
 	UPhysicsHandleComponent* PullOutGetPhysicsHandle() const;
 
 	UPROPERTY(EditAnywhere)
@@ -43,4 +44,6 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float HoldDistance = 200;
+	UPROPERTY(EditAnywhere)
+	bool isGrabbed = false;
 };
