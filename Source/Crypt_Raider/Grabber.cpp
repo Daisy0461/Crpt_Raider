@@ -64,7 +64,7 @@ bool UGrabber::HasDamage(float& OutDamage){						//이와 같이 Reference가 �
 }
 
 void UGrabber::Release(){
-	UE_LOG(LogTemp, Display, TEXT("Release Grabber"));
+	
 }
 
 void UGrabber::Grab(){
@@ -86,8 +86,10 @@ void UGrabber::Grab(){
 	);		//5번째 파라미터인 ECollisionChannel 찾는 방법: 프로젝트 파일->Config->DefalutEngine.ini를 VSCode로 열기->Grabber서치 후 Channel=~~이다.
 
 	if(HasHit){
+		UPrimitiveComponent* HitComponent = HitResult.GetComponent();
+		HitComponent->WakeAllRigidBodies();
 		PhysicsHandle->GrabComponentAtLocationWithRotation(
-			HitResult.GetComponent(), 
+			HitComponent, 
 			NAME_None, 
 			HitResult.ImpactPoint, 
 			//HitResult.GetComponent()->GetComponentRotation()
