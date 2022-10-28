@@ -79,23 +79,13 @@ void UGrabber::Release(){
 }
 
 void UGrabber::Grab(){
-	
 	UPhysicsHandleComponent* PhysicsHandle = PullOutGetPhysicsHandle();
 	if(PhysicsHandle == nullptr){
 		return;
 	}
 
-	FVector Start = GetComponentLocation();
-	FVector End = Start + GetForwardVector() * MaxGrabberDist;
-	DrawDebugLine(GetWorld(), Start, End, FColor::Blue);
-	//DrawDebugSphere(GetWorld(), End, 10, 10, FColor::Red, false, 5);
-
-	FCollisionShape Sphere = FCollisionShape::MakeSphere(GrabRadius);
 	FHitResult HitResult;
-	bool HasHit = GetWorld()->SweepSingleByChannel(HitResult, Start, End, 
-	FQuat::Identity, ECC_GameTraceChannel2, Sphere
-	);		//5번째 파라미터인 ECollisionChannel 찾는 방법: 프로젝트 파일->Config->DefalutEngine.ini를 VSCode로 열기->Grabber서치 후 Channel=~~이다.
-
+	bool HasHit = GetGrabbableInReach(HitResult);
 	if(HasHit){
 		isGrabbed = true;
 		UPrimitiveComponent* HitComponent = HitResult.GetComponent();
@@ -117,5 +107,17 @@ UPhysicsHandleComponent* UGrabber::PullOutGetPhysicsHandle() const{
 		UE_LOG(LogTemp, Warning, TEXT("Grabber reauires a UPhysicsHandleComponent."));
 	}
 	return PhysicsHandle;
+}
+
+bool UGrabber::GetGrabbableInReach(FHitResult& OutResult) const{
+	FVector Start = GetComponentLocation();
+	FVector End = Start + GetForwardVector() * MaxGrabberDist;
+	DrawDebugLine(GetWorld(), Start, End, FColor::Blue);
+	//DrawDebugSphere(GetWorld(), End, 10, 10, FColor::Red, false, 5);
+
+	FCollisionShape Sphere = FCollisionShape::MakeSphere(GrabRadius);
+	bool HasHit = GetWorld()->SweepSingleByChannel(OutResult, Start, End, 
+	FQuat::Identity, ECC_GameTraceChannel2, Sphere
+	);		//5번째 파라미터인 ECollisionChannel 찾는 방법: 프로젝트 파일->Config->DefalutEngine.ini를 VSCode로 열기->Grabber서치 후 Channel=~~이다.
 }
  
