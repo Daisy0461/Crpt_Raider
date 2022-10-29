@@ -109,7 +109,7 @@ UPhysicsHandleComponent* UGrabber::PullOutGetPhysicsHandle() const{
 	return PhysicsHandle;
 }
 
-bool UGrabber::GetGrabbableInReach(FHitResult& OutResult) const{
+bool UGrabber::GetGrabbableInReach(FHitResult& OutResult){
 	FVector Start = GetComponentLocation();
 	FVector End = Start + GetForwardVector() * MaxGrabberDist;
 	DrawDebugLine(GetWorld(), Start, End, FColor::Blue);

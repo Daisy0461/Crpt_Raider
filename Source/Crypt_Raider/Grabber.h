@@ -47,5 +47,5 @@ private:
 	UPROPERTY(EditAnywhere)
 	bool isGrabbed = false;
 
-	bool GetGrabbableInReach(FHitResult& OutResult) const;
+	bool GetGrabbableInReach(FHitResult& OutResult);
 };
