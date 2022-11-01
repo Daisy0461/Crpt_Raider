@@ -86,6 +86,7 @@ void UGrabber::Grab(){
 
 	FHitResult HitResult;
 	bool HasHit = GetGrabbableInReach(HitResult);
+
 	if(HasHit){
 		isGrabbed = true;
 		UPrimitiveComponent* HitComponent = HitResult.GetComponent();
@@ -112,12 +113,13 @@ UPhysicsHandleComponent* UGrabber::PullOutGetPhysicsHandle() const{
 bool UGrabber::GetGrabbableInReach(FHitResult& OutResult) const{		//Out 파라미터 제대로 이해하고 사용하기 -> 정리하기/
 	FVector Start = GetComponentLocation();
 	FVector End = Start + GetForwardVector() * MaxGrabberDist;
-	DrawDebugLine(GetWorld(), Start, End, FColor::Blue);
+	//DrawDebugLine(GetWorld(), Start, End, FColor::Blue);
 	//DrawDebugSphere(GetWorld(), End, 10, 10, FColor::Red, false, 5);
 
 	FCollisionShape Sphere = FCollisionShape::MakeSphere(GrabRadius);
-	bool HasHit = GetWorld()->SweepSingleByChannel(OutResult, Start, End, 
+	return GetWorld()->SweepSingleByChannel(OutResult, Start, End, 
 	FQuat::Identity, ECC_GameTraceChannel2, Sphere
 	);		//5번째 파라미터인 ECollisionChannel 찾는 방법: 프로젝트 파일->Config->DefalutEngine.ini를 VSCode로 열기->Grabber서치 후 Channel=~~이다.
+
 }
  
