@@ -83,5 +83,15 @@
 		"file": "D:\\Udemy_Project\\Crpt_Raider_\\Source\\Crypt_Raider\\TP_WeaponComponent.h",
 		"command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe\" @D:\\Udemy_Project\\Crpt_Raider_\\.vscode\\compileCommands_Crypt_Raider\\Crypt_Raider.211.rsp",
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Udemy_Project\\Crpt_Raider_\\Source\\Crypt_Raider\\TriggerComponent.cpp",
+		"command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe\" @D:\\Udemy_Project\\Crpt_Raider_\\.vscode\\compileCommands_Crypt_Raider\\Crypt_Raider.211.rsp",
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Udemy_Project\\Crpt_Raider_\\Source\\Crypt_Raider\\TriggerComponent.h",
+		"command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe\" @D:\\Udemy_Project\\Crpt_Raider_\\.vscode\\compileCommands_Crypt_Raider\\Crypt_Raider.211.rsp",
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.0\\Engine\\Source"
 	}
 ]
