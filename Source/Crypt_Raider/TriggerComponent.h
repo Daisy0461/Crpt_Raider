@@ -23,4 +23,9 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	AActor* GetAcceptableActor() const;
+	UPROPERTY(EditAnywhere)
+	FName tag = "Unlock1";
+
+
 };

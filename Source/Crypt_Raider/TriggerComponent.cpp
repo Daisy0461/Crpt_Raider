@@ -17,13 +17,10 @@ void UTriggerComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);		//Super이기 때문에 Parent의 Tick을 부른다. Parent는 h파일에서 확인할 수 있고 여기선 UBoxComponent이다.
 
-	TArray<AActor*> Actors;				//Actor*를 담는 Array 생성 Vector처럼 크기가 정해져있지 않은 Array이다.
-	GetOverlappingActors(Actors);		//Tick에 따라 여러 개의 Actor가 Overlapping 될 수 있기 때문에 TArray를 받는거 같음
-
-	for(int32 i=0; i<Actors.Num(); i++){
-		FString name = Actors[i]->GetActorNameOrLabel();
-		UE_LOG(LogTemp, Display, TEXT("Actor's name: %s"), *name);
-	}
+	// for(int32 i=0; i<Actors.Num(); i++){
+	// 	FString name = Actors[i]->GetActorNameOrLabel();
+	// 	UE_LOG(LogTemp, Display, TEXT("Actor's name: %s"), *name);
+	// }
 
 	// //위의 for문을 다음과 같이 사용이 가능하다.
 	// for(AActor* Actor : Actors){		//우리가 Pointer나 변수들을 넣은 Array를 루프 돌릴 때 사용한다. Actors에 있는 모든 요소를 다 방문하며 TArray뿐만 아니라 다른 변수를 담는 타입들도 사용이 가능하다.
@@ -31,4 +28,24 @@ void UTriggerComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 	// 	UE_LOG(LogTemp, Display, TEXT("Actor's name: %s"), *name);
 	// }
 
+	AActor* AcceptActor = GetAcceptableActor();
+	if(AcceptActor != nullptr){
+		UE_LOG(LogTemp, Display, TEXT("Unlocking"));	
+	}else{
+		UE_LOG(LogTemp, Display, TEXT("Relocking"));
+	}
+}
+
+AActor* UTriggerComponent::GetAcceptableActor() const
+{
+	TArray<AActor*> Actors;				//Actor*를 담는 Array 생성 Vector처럼 크기가 정해져있지 않은 Array이다.
+	GetOverlappingActors(Actors);		//Tick에 따라 여러 개의 Actor가 Overlapping 될 수 있기 때문에 TArray를 받는거 같음
+
+	for(AActor* Actor : Actors){
+		if(Actor->ActorHasTag(tag)){
+			return Actor;
+		}
+	}
+
+	return nullptr;		// 이게 꼭 있어야한다.
 }
