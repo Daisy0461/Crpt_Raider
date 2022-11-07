@@ -71,7 +71,10 @@ void UGrabber::Release(){
 		return;
 	}
 
-	if(PhysicsHandle->GetGrabbedComponent() != nullptr){		//무언가를 쥐고 있다면
+	if(PhysicsHandle->GetGrabbedComponent() != nullptr){		//무언가를 쥐고 있었다면
+		AActor* GrabbedActor = PhysicsHandle->GetGrabbedComponent()->GetOwner();//->Tags.Remove("Grabbed");		//PhysicsHandle에 잡힌 Component를 찾아 냈으니 이 컴포넌트의 GetOwner()(가고일 Actor)를 불러내고 이 Actor의 Tag를 불러온다.
+		GrabbedActor->Tags.Remove("Grabbed");
+		
 		PhysicsHandle->GetGrabbedComponent()->WakeAllRigidBodies();			//이것을 실행시키는 이유가 Grab을 실행시키고 움직이지 않으면 Physic 최적화를 위해 Rigid가 꺼질 수 있으므로 놓을 때 다시 켜줘야한다. 다시 켜지 않으면 물리가 적용되지 않아서 놓을 수 없을 수도 있다.
 		PhysicsHandle->ReleaseComponent();
 	}
@@ -91,6 +94,7 @@ void UGrabber::Grab(){
 		isGrabbed = true;
 		UPrimitiveComponent* HitComponent = HitResult.GetComponent();
 		HitComponent->WakeAllRigidBodies();
+		HitResult.GetActor()->Tags.Add("Grabbed");
 		PhysicsHandle->GrabComponentAtLocationWithRotation(
 			HitComponent, 
 			NAME_None, 
@@ -105,7 +109,7 @@ void UGrabber::Grab(){
 UPhysicsHandleComponent* UGrabber::PullOutGetPhysicsHandle() const{
 	UPhysicsHandleComponent* PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
 	if(PhysicsHandle == nullptr){
-		UE_LOG(LogTemp, Warning, TEXT("Grabber reauires a UPhysicsHandleComponent."));
+		UE_LOG(LogTemp, Warning, TEXT("Grabber require a UPhysicsHandleComponent."));
 	}
 	return PhysicsHandle;
 }

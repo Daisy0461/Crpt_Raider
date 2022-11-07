@@ -26,6 +26,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	int32 a;
 
+	
+	void SetShouldMove(bool ShouldMove);
+
 private:
 	UPROPERTY(EditAnywhere)
 	FVector MoveOffset;
@@ -37,5 +40,8 @@ private:
 	bool ShouldMove = false;
 
 	FVector OriginalLocation;
+
+	UPROPERTY(EditAnywhere)
+	bool ShoudMove = false;
 		
 };

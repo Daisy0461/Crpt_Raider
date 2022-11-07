@@ -39,6 +39,10 @@ void UMover::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponent
 	}
 }
 
+void UMover::SetShouldMove(bool NewShouldMove){
+	ShouldMove = NewShouldMove;
+}
+
 /*포인터 설명*/
 	// AActor* Owner = GetOwner();							//Actor(문)이 있는 주소를 Owner에 넣는다.
 	// FString Name = (*Owner).GetActorNameOrLabel();		//(*Owner)를 통해 Actor에 접근을 해서 사용할 수 있는 함수를 사용한다. 현재 Actor의 이름을 넣는다.

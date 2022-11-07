@@ -4,15 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "Components/BoxComponent.h"
+#include "Mover.h"
 #include "TriggerComponent.generated.h"
 
-/**
- * 
- */
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class CRYPT_RAIDER_API UTriggerComponent : public UBoxComponent
 {
 	GENERATED_BODY()
+
 public:
 	UTriggerComponent();
 
@@ -23,9 +22,16 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	AActor* GetAcceptableActor() const;
+	UFUNCTION(BlueprintCallable)
+	void SetMover (UMover* Mover);
+
+	
+private:
+	AActor* GetAceptableActor() const;
+
+	UMover* Mover;
+
 	UPROPERTY(EditAnywhere)
 	FName tag = "Unlock1";
-
 
 };

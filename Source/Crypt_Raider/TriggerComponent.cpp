@@ -17,26 +17,28 @@ void UTriggerComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);		//Super이기 때문에 Parent의 Tick을 부른다. Parent는 h파일에서 확인할 수 있고 여기선 UBoxComponent이다.
 
-	// for(int32 i=0; i<Actors.Num(); i++){
-	// 	FString name = Actors[i]->GetActorNameOrLabel();
-	// 	UE_LOG(LogTemp, Display, TEXT("Actor's name: %s"), *name);
-	// }
+	if(Mover == nullptr){
+		return;
+	}
 
-	// //위의 for문을 다음과 같이 사용이 가능하다.
-	// for(AActor* Actor : Actors){		//우리가 Pointer나 변수들을 넣은 Array를 루프 돌릴 때 사용한다. Actors에 있는 모든 요소를 다 방문하며 TArray뿐만 아니라 다른 변수를 담는 타입들도 사용이 가능하다.
-	// 	FString name = Actor->GetActorNameOrLabel();				//위 for에서 사용한 Actor[i] 대신에 Actor를 사용한다. 순차적으로 방문하기 때문에 i가 사라지는 것이다.
-	// 	UE_LOG(LogTemp, Display, TEXT("Actor's name: %s"), *name);
-	// }
-
-	AActor* AcceptActor = GetAcceptableActor();
-	if(AcceptActor != nullptr){
-		UE_LOG(LogTemp, Display, TEXT("Unlocking"));	
+	AActor* Actor = GetAceptableActor();
+	if(Actor != nullptr){																			//UPrimitiveComponent = USceneComponent이며 충돌 데이터로 렌더링되거나 사용되는 기하학를 생성하는 것이다.
+		UPrimitiveComponent* Component = Cast<UPrimitiveComponent>(Actor->GetRootComponent());		//Actor의 RootComponent의 USceneComponent가 UPrimitiveComponent인것이 맞다면 Output은 UPrimitive의 Pointer가 되고 아니면 nullptr이 출력된다.
+		if(Component != nullptr){
+			Component->SetSimulatePhysics(false);		//UPrimitive에 있는 함수인 SetSimulatePhysics이며 UPrimitiveComponent가 충돌을 계산하는데 여기서 Actor의 Physic를 끄겠다는 것이다.
+		}
+		Actor->AttachToComponent(this, FAttachmentTransformRules::KeepWorldTransform);		//찾은 Actor(가고일 동상)에 이 Component를 붙인다..?
+		Mover->	SetShouldMove(true);
 	}else{
-		UE_LOG(LogTemp, Display, TEXT("Relocking"));
+		Mover->SetShouldMove(false);
 	}
 }
 
-AActor* UTriggerComponent::GetAcceptableActor() const
+void UTriggerComponent::SetMover(UMover* NewMover){			//SetMover로 Mover가 설정이 된다. 그럼 이게 어디서 사용되냐? -> BP에서 Begin할 때 Wall에 있는 Mover가 NewMover로 들어온다.
+	Mover = NewMover;
+}
+
+AActor* UTriggerComponent::GetAceptableActor() const
 {
 	TArray<AActor*> Actors;				//Actor*를 담는 Array 생성 Vector처럼 크기가 정해져있지 않은 Array이다.
 	GetOverlappingActors(Actors);		//Tick에 따라 여러 개의 Actor가 Overlapping 될 수 있기 때문에 TArray를 받는거 같음
