@@ -25,7 +25,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetMover (UMover* Mover);
 
-	
 private:
 	AActor* GetAceptableActor() const;
 

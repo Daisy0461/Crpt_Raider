@@ -31,11 +31,8 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 
 	
 	UPhysicsHandleComponent* PhysicsHandle = PullOutGetPhysicsHandle();
-	if(PhysicsHandle == nullptr){
-		return;
-	}
 
-	if(PhysicsHandle->GetGrabbedComponent() != nullptr){			//무언가를 쥐고 있다면 아래를 실행 
+	if(PhysicsHandle && PhysicsHandle->GetGrabbedComponent()){			//무언가를 쥐고 있다면 실행 & PhysicHandle이 먼저 있는지 확인해야하기 때문에 이것을 확인하는 것이 좌측에 와야한다.
 		FVector TargetLocation = GetComponentLocation() + GetForwardVector() * HoldDistance;
 		PhysicsHandle->SetTargetLocationAndRotation(TargetLocation, GetComponentRotation());
 	}
@@ -67,14 +64,14 @@ bool UGrabber::HasDamage(float& OutDamage){						//이와 같이 Reference가 �
 
 void UGrabber::Release(){
 	UPhysicsHandleComponent* PhysicsHandle = PullOutGetPhysicsHandle();
-	if(PhysicsHandle == nullptr){
-		return;
-	}
+	// if(PhysicsHandle == nullptr){
+	// 	return;
+	// }
 
-	if(PhysicsHandle->GetGrabbedComponent() != nullptr){		//무언가를 쥐고 있었다면
+	if(PhysicsHandle && PhysicsHandle->GetGrabbedComponent()){		//PhysicsHandle같이 *는 끝에 != nullptr은 지워도 이처럼 사용가능함.
 		AActor* GrabbedActor = PhysicsHandle->GetGrabbedComponent()->GetOwner();//->Tags.Remove("Grabbed");		//PhysicsHandle에 잡힌 Component를 찾아 냈으니 이 컴포넌트의 GetOwner()(가고일 Actor)를 불러내고 이 Actor의 Tag를 불러온다.
 		GrabbedActor->Tags.Remove("Grabbed");
-		
+
 		PhysicsHandle->GetGrabbedComponent()->WakeAllRigidBodies();			//이것을 실행시키는 이유가 Grab을 실행시키고 움직이지 않으면 Physic 최적화를 위해 Rigid가 꺼질 수 있으므로 놓을 때 다시 켜줘야한다. 다시 켜지 않으면 물리가 적용되지 않아서 놓을 수 없을 수도 있다.
 		PhysicsHandle->ReleaseComponent();
 	}
@@ -93,8 +90,13 @@ void UGrabber::Grab(){
 	if(HasHit){
 		isGrabbed = true;
 		UPrimitiveComponent* HitComponent = HitResult.GetComponent();
+		HitComponent->SetSimulatePhysics(true);
 		HitComponent->WakeAllRigidBodies();
-		HitResult.GetActor()->Tags.Add("Grabbed");
+
+		AActor* HitActor = HitResult.GetActor();
+		HitActor->Tags.Add("Grabbed");
+		//HitActor->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);   //가고일은 이거 없어도 됐다? 왜일까?
+
 		PhysicsHandle->GrabComponentAtLocationWithRotation(
 			HitComponent, 
 			NAME_None, 

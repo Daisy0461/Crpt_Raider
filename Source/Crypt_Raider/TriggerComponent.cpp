@@ -44,7 +44,9 @@ AActor* UTriggerComponent::GetAceptableActor() const
 	GetOverlappingActors(Actors);		//Tick에 따라 여러 개의 Actor가 Overlapping 될 수 있기 때문에 TArray를 받는거 같음
 
 	for(AActor* Actor : Actors){
-		if(Actor->ActorHasTag(tag)){
+		bool HasAcceptableTag = Actor->ActorHasTag(tag);
+		bool IsGrabbed = Actor->ActorHasTag("Grabbed");
+		if(HasAcceptableTag && !IsGrabbed){
 			return Actor;
 		}
 	}
