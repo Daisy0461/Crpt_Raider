@@ -31,6 +31,6 @@ private:
 	UMover* Mover;
 
 	UPROPERTY(EditAnywhere)
-	FName tag = "Unlock1";
+	FName tag;
 
 };

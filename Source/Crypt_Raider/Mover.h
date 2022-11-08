@@ -34,7 +34,7 @@ private:
 	FVector MoveOffset;
 
 	UPROPERTY(EditAnywhere)
-	float MoveTime = 4;
+	float MoveTime = 3;
 
 	UPROPERTY(EditAnywhere)
 	bool ShouldMove = false;
@@ -43,5 +43,6 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	bool ShoudMove = false;
+
 		
 };

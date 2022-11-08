@@ -22,7 +22,7 @@ void UTriggerComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 	}
 
 	AActor* Actor = GetAceptableActor();
-	if(Actor != nullptr){																			//UPrimitiveComponent = USceneComponent이며 충돌 데이터로 렌더링되거나 사용되는 기하학를 생성하는 것이다.
+	if(Actor != nullptr){																	//UPrimitiveComponent = USceneComponent이며 충돌 데이터로 렌더링되거나 사용되는 기하학를 생성하는 것이다.
 		UPrimitiveComponent* Component = Cast<UPrimitiveComponent>(Actor->GetRootComponent());		//Actor의 RootComponent의 USceneComponent가 UPrimitiveComponent인것이 맞다면 Output은 UPrimitive의 Pointer가 되고 아니면 nullptr이 출력된다.
 		if(Component != nullptr){
 			Component->SetSimulatePhysics(false);		//UPrimitive에 있는 함수인 SetSimulatePhysics이며 UPrimitiveComponent가 충돌을 계산하는데 여기서 Actor의 Physic를 끄겠다는 것이다.
@@ -44,8 +44,9 @@ AActor* UTriggerComponent::GetAceptableActor() const
 	GetOverlappingActors(Actors);		//Tick에 따라 여러 개의 Actor가 Overlapping 될 수 있기 때문에 TArray를 받는거 같음
 
 	for(AActor* Actor : Actors){
-		bool HasAcceptableTag = Actor->ActorHasTag(tag);
+		bool HasAcceptableTag = Actor->ActorHasTag(tag);			
 		bool IsGrabbed = Actor->ActorHasTag("Grabbed");
+
 		if(HasAcceptableTag && !IsGrabbed){
 			return Actor;
 		}

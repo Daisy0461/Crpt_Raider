@@ -30,13 +30,16 @@ void UMover::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponent
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	if(ShouldMove){
-		FVector CurrnetLocation = GetOwner()->GetActorLocation();
-		FVector TartgetLocation = OriginalLocation + MoveOffset;
-		float Speed = FVector::Dist(OriginalLocation, TartgetLocation) / MoveTime;
-
-		GetOwner()-> SetActorLocation(FMath::VInterpConstantTo(CurrnetLocation, TartgetLocation, DeltaTime, Speed));		//SetActorLocation에 FVector형을 넣어줘야 됌.
+	FVector TartgetLocation = OriginalLocation;
+	if(ShouldMove){				//Trigger에 해당하는 Tag를 가진 Actor가 있으면 움직이게 된다.
+		TartgetLocation = OriginalLocation + MoveOffset;
 	}
+
+	FVector CurrnetLocation = GetOwner()->GetActorLocation();		//다 올라갔다면 다 올라간 위치가 현재 위치로 들어가겠지
+	float Speed = MoveOffset.Length() / MoveTime;
+
+	GetOwner()-> SetActorLocation(FMath::VInterpConstantTo(CurrnetLocation, TartgetLocation, DeltaTime, Speed));		//SetActorLocation에 FVector형을 넣어줘야 됌.
+
 }
 
 void UMover::SetShouldMove(bool NewShouldMove){

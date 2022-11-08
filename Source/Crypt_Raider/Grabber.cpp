@@ -95,7 +95,7 @@ void UGrabber::Grab(){
 
 		AActor* HitActor = HitResult.GetActor();
 		HitActor->Tags.Add("Grabbed");
-		//HitActor->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);   //가고일은 이거 없어도 됐다? 왜일까?
+		//HitActor->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);   //가고일은 이거 없어도 됐다? 왜일까? 근데 동상은 그대로 뚝 떨어진다.
 
 		PhysicsHandle->GrabComponentAtLocationWithRotation(
 			HitComponent, 
